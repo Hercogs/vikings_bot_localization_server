@@ -18,7 +18,7 @@ def launch_setup(context, *arg, **args):
     yaw_spawn = LaunchConfiguration('yaw_spawn').perform(context)
 
 
-    package_name = "localization_server"
+    package_name = "vikings_bot_localization_server"
 
     amcl_config = os.path.join(get_package_share_directory(package_name), "config", f"{vikings_bot_name}_amcl_config.yaml")
     #c = PathJoinSubstitution([get_package_share_directory(package_name), "config", vikings_bot_name_val, "_amcl_config.yaml"])

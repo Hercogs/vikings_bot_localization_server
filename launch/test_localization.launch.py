@@ -7,13 +7,13 @@ from launch_ros.actions import Node
 
 def generate_launch_description():
 
-    package_name = "localization_server"
+    package_name = "vikings_bot_localization_server"
 
     robot_name = "vikings_bot_1"
     #node_name = robot_name + "_amcl"
 
     amcl_config = os.path.join(get_package_share_directory(package_name), "config", "test.yaml")
-    #amcl_config = os.path.join(get_package_share_directory('localization_server'), 'config', 'tb3_1_amcl_config.yaml')
+    #amcl_config = os.path.join(get_package_share_directory('vikings_bot_localization_server'), 'config', 'tb3_1_amcl_config.yaml')
 
     nav2_amcl = Node(
         #namespace=robot_name,

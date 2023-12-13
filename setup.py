@@ -2,7 +2,7 @@ from setuptools import find_packages, setup
 import os
 from glob import glob
 
-package_name = 'localization_server'
+package_name = 'vikings_bot_localization_server'
 
 setup(
     name=package_name,
