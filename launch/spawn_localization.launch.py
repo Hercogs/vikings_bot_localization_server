@@ -16,6 +16,7 @@ def launch_setup(context, *arg, **args):
     x_spawn = LaunchConfiguration('x_spawn').perform(context)
     y_spawn = LaunchConfiguration('y_spawn').perform(context)
     yaw_spawn = LaunchConfiguration('yaw_spawn').perform(context)
+    use_sim = LaunchConfiguration("use_sim")
 
 
     package_name = "vikings_bot_localization_server"
@@ -36,7 +37,8 @@ def launch_setup(context, *arg, **args):
         parameters=[amcl_config,
                     {"initial_pose": {"x": float(x_spawn)}},
                     {"initial_pose": {"y": float(y_spawn)}},
-                    ]
+                    {'use_sim_time': use_sim}
+        ]
     )
 
     # Lifecycle node
@@ -45,7 +47,7 @@ def launch_setup(context, *arg, **args):
                             executable='lifecycle_manager',
                             name="amcl_lifecycle_manager",
                             output='screen',
-                            parameters=[{'use_sim_time': True},
+                            parameters=[{'use_sim_time': use_sim},
                                         {'autostart': True},
                                         {"bond_timeout": 5.0},
                                         {'node_names': ["amcl"]}
@@ -63,12 +65,16 @@ def generate_launch_description():
     x_spawn_arg = DeclareLaunchArgument('x_spawn', default_value='0.0')
     y_spawn_arg = DeclareLaunchArgument('y_spawn', default_value='0.0')
     yaw_spawn_arg = DeclareLaunchArgument('yaw_spawn', default_value='0.0')
+    use_sim_arg = DeclareLaunchArgument("use_sim",
+                                            default_value="True",
+                                            description='Use simulation or real time')
 
     return LaunchDescription([
         vikings_bot_name_arg,
         x_spawn_arg,
         y_spawn_arg,
         yaw_spawn_arg,
+        use_sim_arg,
 
         OpaqueFunction(function=launch_setup)
     ])

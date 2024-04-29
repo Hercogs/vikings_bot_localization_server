@@ -47,10 +47,3 @@ vikings_bot_1/amcl:
       z: 0.0
       a: 0.0
 
-vikings_bot_1/amcl_map_client:
-  ros__parameters:
-    use_sim_time: True
-
-vikings_bot_1/amcl_rclcpp_node:
-  ros__parameters:
-    use_sim_time: True
